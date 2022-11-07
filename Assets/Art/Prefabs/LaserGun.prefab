@@ -4781,7 +4781,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4887,8 +4887,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -388003055
-  m_SortingLayer: 2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: -6628414004274166170, guid: abb480a6baaf485c81c17a7f3c4fdc42, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4910,29 +4910,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5497813546799268213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edb1bc00d82d375409ed04cfb6a8f85c, type: 3}
+  m_Script: {fileID: 11500000, guid: 074a974f02e80104a8c9ca26ef9e0edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  z_ContactFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 64
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  audioSource: {fileID: 5497813546799268222}
-  WeaponName: LaserGun
-  WeaponSprite: {fileID: 5497813546799268219}
-  WeaponBatteryAmount: 1
-  WeaponBatteryHolderSprite: {fileID: 21300000, guid: 65bf320ab828220458951c0183ae6b71, type: 3}
-  WeaponDamage: 1
+  audioSource: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 18fac8285a053724f8d0b0ef51ccd909, type: 3}
+  PlayerHasBulletForWeapon: 1
 --- !u!61 &5497813546799268216
 BoxCollider2D:
   m_ObjectHideFlags: 0

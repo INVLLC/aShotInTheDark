@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1f;
     public float collisionOffset = 0.5f;
     public ContactFilter2D movementFilter;
+    //bring audiosource
+    public AudioSource audioSource;
 
     SpriteRenderer spriteRenderer;
 
@@ -22,6 +24,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        //grab audiosource
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate(){
@@ -66,52 +70,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isWalkingBackToCam", false);
             anim.SetBool("isWalkingFacingCam", false);
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        // if(movementInput.x < 0){
-
-        //     spriteRenderer.flipX = false;
-
-        // } else if(movementInput.x > 0){
-
-        //     spriteRenderer.flipX = true;
-
-        // } else if(movementInput.y > 0){
-
-        //     anim.SetBool("isWalkingSide", false);
-        //     anim.SetBool("isWalkingBackToCam", true);
-
-        // } else if(movementInput.y < 0){
-
-        //    //if player then set other bool to false and set isWalkingFacingCam to true
-        //     anim.SetBool("isWalkingSide", false);
-        //     anim.SetBool("isWalkingBackToCam", false);
-        //     anim.SetBool("isWalkingFacingCam", true);
-       
-         
-        // } // else if there is NO movement input, set all to false
-        // else {
-
-        //     anim.SetBool("isWalkingFacingCam", false);
-        //     anim.SetBool("isWalkingBackToCam", false);
-        //     anim.SetBool("isWalkingSide", false);
-
-        // }
-        
-        
+                
     }
 
     private bool TryMove(Vector2 direction){
@@ -134,4 +93,6 @@ public class PlayerController : MonoBehaviour
         movementInput = movementValue.Get<Vector2>();
       
     }
+
+    
 }

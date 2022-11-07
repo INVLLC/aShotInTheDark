@@ -6,27 +6,38 @@ public class ObjectLogic : MonoBehaviour
 {
 
     private Collider2D z_Collider;
-    [SerializeField] private ContactFilter2D z_ContactFilter;
-    private List<Collider2D> z_Collider2DList = new List<Collider2D>(1);
+    // [SerializeField] private ContactFilter2D z_ContactFilter;
+    // private List<Collider2D> z_Collider2DList = new List<Collider2D>(1);
+    // public AudioSource audioSource;
+    public AudioClip audioClip;
+    public uiController uiController;
+
+
+    //int player has bullet for weapon
+    public int PlayerHasBulletForWeapon = 1;
     protected virtual void Start()
     {
         z_Collider = GetComponent<Collider2D>();
-    
+        // audioSource = GetComponent<AudioSource>();
+
+    //debug log
+        Debug.Log("Player has " + PlayerHasBulletForWeapon + " bullet for weapon");
         
     }
 
-    // Update is called once per frame
-    protected virtual void Update()
+    
+    //make a OnCollisionEnter2D function
+    void OnTriggerEnter2D(Collider2D other)
     {
-        z_Collider.OverlapCollider(z_ContactFilter, z_Collider2DList);
-        foreach(var o in z_Collider2DList)
+        //if the player collides with the weapon
+        if (other.gameObject.CompareTag("Player"))
         {
-        OnCollided(o.gameObject);
-        }        
+            uiController.UpdateBullets(PlayerHasBulletForWeapon); 
+            other.gameObject.GetComponent<AudioSource>().PlayOneShot(audioClip);
+            Destroy(gameObject);
+           
+    
+        }
     }
-
-    protected virtual void OnCollided(GameObject collidedObject)
-    {
-        Debug.Log("Collided with: " + collidedObject.name);
-    }
+   
 }

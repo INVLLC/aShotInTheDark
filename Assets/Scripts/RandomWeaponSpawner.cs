@@ -10,6 +10,8 @@ public class RandomWeaponSpawner : MonoBehaviour
     public float Radius = 1;
     public Tilemap tilemap;
     public float WeaponsPerSpawner = 3;
+    public uiController uiController;
+
 
 
 
@@ -32,8 +34,10 @@ public class RandomWeaponSpawner : MonoBehaviour
 
     void SpawnWeapon()
     {
-        Instantiate(weapons[Random.Range(0, weapons.Length)], transform.position + Random.insideUnitSphere * Radius, Quaternion.identity, transform);
+        GameObject weaponSpawn;
+        weaponSpawn = Instantiate(weapons[Random.Range(0, weapons.Length)], transform.position + Random.insideUnitSphere * Radius, Quaternion.identity, transform);
         
+        weaponSpawn.GetComponent<ObjectLogic>().uiController = uiController;
        
     }
 
