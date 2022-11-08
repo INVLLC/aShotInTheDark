@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ObjectLogic : MonoBehaviour
 {
-
     private Collider2D z_Collider;
     // [SerializeField] private ContactFilter2D z_ContactFilter;
     // private List<Collider2D> z_Collider2DList = new List<Collider2D>(1);
@@ -12,16 +11,10 @@ public class ObjectLogic : MonoBehaviour
     public AudioClip audioClip;
     public uiController uiController;
 
-
-    //int player has bullet for weapon
     public int PlayerHasBulletForWeapon = 1;
     protected virtual void Start()
     {
         z_Collider = GetComponent<Collider2D>();
-        // audioSource = GetComponent<AudioSource>();
-
-    //debug log
-        Debug.Log("Player has " + PlayerHasBulletForWeapon + " bullet for weapon");
         
     }
 

@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1f;
     public float collisionOffset = 0.5f;
     public ContactFilter2D movementFilter;
-    //bring audiosource
     public AudioSource audioSource;
+    
 
     SpriteRenderer spriteRenderer;
 
@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+
+    Vector2 mousePosition;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
         //grab audiosource
         audioSource = GetComponent<AudioSource>();
     }
+
 
     private void FixedUpdate(){
         if(movementInput != Vector2.zero){
@@ -70,6 +73,11 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isWalkingBackToCam", false);
             anim.SetBool("isWalkingFacingCam", false);
         }
+
+    
+
+ 
+
                 
     }
 
