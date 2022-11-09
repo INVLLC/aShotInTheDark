@@ -23,12 +23,6 @@ public class RandomWeaponSpawner : MonoBehaviour
         {
             SpawnWeapon();
         }
-    
-        
-        tilemap = GameObject.FindGameObjectWithTag("Obstacles").GetComponent<Tilemap>();
-           
-
-
         
     }
 

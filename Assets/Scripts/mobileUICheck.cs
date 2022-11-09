@@ -1,13 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class mobileUICheck : MonoBehaviour
 {
-    // Start is called before the first frame update
+  
     void Start()
     {
-        gameObject.SetActive(Application.isMobilePlatform);        
+      
+        gameObject.SetActive(Application.isMobilePlatform);   
+  
+        
     }
+
+  
 
 }
