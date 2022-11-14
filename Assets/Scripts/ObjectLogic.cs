@@ -11,7 +11,11 @@ public class ObjectLogic : MonoBehaviour
     public AudioClip audioClip;
     public uiController uiController;
 
-    public int PlayerHasBulletForWeapon = 1;
+  
+
+    public int ItemInInventory = 1;
+    public int SpecialItem = 0;
+
     protected virtual void Start()
     {
         z_Collider = GetComponent<Collider2D>();
@@ -25,12 +29,29 @@ public class ObjectLogic : MonoBehaviour
         //if the player collides with the weapon
         if (other.gameObject.CompareTag("Player"))
         {
-            uiController.UpdateBullets(PlayerHasBulletForWeapon); 
+
+            uiController.UpdateBullets(ItemInInventory); 
             other.gameObject.GetComponent<AudioSource>().PlayOneShot(audioClip);
             Destroy(gameObject);
-           
     
         }
+
+        //if the player collides with object tag "special" 
+        if (other.gameObject.CompareTag("Player"))
+        {
+            //and the collidded object is tagged "special"
+            if (gameObject.CompareTag("Special"))
+            {
+                //update the special item
+                uiController.UpdateSpecialItem(SpecialItem);
+                //play the audio clip
+                other.gameObject.GetComponent<AudioSource>().PlayOneShot(audioClip);
+                //destroy the object
+                Destroy(gameObject);
+            }
+        }
+        
+
     }
    
 }

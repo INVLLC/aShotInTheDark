@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,13 +11,15 @@ public class PlayerController : MonoBehaviour
     public ContactFilter2D movementFilter;
     public AudioSource audioSource;
     
-
     SpriteRenderer spriteRenderer;
 
     Vector2 movementInput;
     Rigidbody2D rb;
     Animator anim;
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    //bring the UIcontroller into the player controller
+    [SerializeField]private uiController uiController;
+    //make a list for the dpad
 
     Vector2 mousePosition;
 
@@ -26,8 +29,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        //grab audiosource
-        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();   
     }
 
 
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
             if(!sucess){
                 // try to move in the x direction
                 sucess = TryMove(new Vector2(movementInput.x, 0));
+;
                 if(!sucess){
                     // try to move in the y direction
                     sucess = TryMove(new Vector2(0, movementInput.y));
@@ -48,6 +51,7 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("isWalkingSide", false);
 
             }
+            
         
         //if a player clicks on the a or D key, change flipX to true or false and set the isWalkingSide to true. If a player clicks on W set the isWalkingSide to false and set the isWalkingBackToCam to true. if a player clicks on the S key set the isWalkingSide to false and set the isWalkingFacingCam to true.
         if(movementInput.x > 0){
@@ -74,10 +78,6 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isWalkingFacingCam", false);
         }
 
-    
-
- 
-
                 
     }
 
@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
             if(count == 0){
                     rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
                     return true;
+                    //debug.log("player moved");
             } else {
                 return false;
             }
@@ -99,8 +100,42 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
-      
-    }
+        //change the color of the image of the dpad element based on the direction the player is moving
+        if(movementInput.x > 0){
+            //This is Left
+            uiController.dpad[0].GetComponent<Image>().color = Color.white;
+            uiController.dpad[1].GetComponent<Image>().color = new Color32(70, 69, 69, 255);
+            uiController.dpad[2].GetComponent<Image>().color = Color.white;
+            uiController.dpad[3].GetComponent<Image>().color = Color.white;
+        } else if(movementInput.x < 0){
+            //This is Right
+            uiController.dpad[0].GetComponent<Image>().color = Color.white;
+            uiController.dpad[1].GetComponent<Image>().color = Color.white;
+            uiController.dpad[2].GetComponent<Image>().color = new Color32(70, 69, 69, 255);
+            uiController.dpad[3].GetComponent<Image>().color = Color.white;
+        } else if(movementInput.y > 0){
+            //This is Up
+            uiController.dpad[0].GetComponent<Image>().color =  new Color32(70, 69, 69, 255);
+            uiController.dpad[1].GetComponent<Image>().color = Color.white;
+            uiController.dpad[2].GetComponent<Image>().color = Color.white;
+            uiController.dpad[3].GetComponent<Image>().color = Color.white;
+        } else if(movementInput.y < 0){
+            //This is Down
+            uiController.dpad[0].GetComponent<Image>().color = Color.white;
+            uiController.dpad[1].GetComponent<Image>().color = Color.white;
+            uiController.dpad[2].GetComponent<Image>().color = Color.white;
+            uiController.dpad[3].GetComponent<Image>().color = new Color32(70, 69, 69, 255);
+        } else {
+            uiController.dpad[0].GetComponent<Image>().color = Color.white;
+            uiController.dpad[1].GetComponent<Image>().color = Color.white;
+            uiController.dpad[2].GetComponent<Image>().color = Color.white;
+            uiController.dpad[3].GetComponent<Image>().color = Color.white;
+        }
+        
+       
+    } 
+     
 
-    
+
+
 }

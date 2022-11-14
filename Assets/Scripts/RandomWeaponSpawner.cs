@@ -32,6 +32,7 @@ public class RandomWeaponSpawner : MonoBehaviour
         weaponSpawn = Instantiate(weapons[Random.Range(0, weapons.Length)], transform.position + Random.insideUnitSphere * Radius, Quaternion.identity, transform);
         
         weaponSpawn.GetComponent<ObjectLogic>().uiController = uiController;
+        
        
     }
 
@@ -45,11 +46,11 @@ public class RandomWeaponSpawner : MonoBehaviour
     }
 
 
-    void Update()
-    {
-        if (transform.childCount < WeaponsPerSpawner)
-        {
-            SpawnWeapon();
-        }
-    }
+    // void Update()
+    // {
+    //     if (transform.childCount < WeaponsPerSpawner)
+    //     {
+    //         SpawnWeapon();
+    //     }
+    // }
 }
